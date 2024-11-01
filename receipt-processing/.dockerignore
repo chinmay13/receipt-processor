@@ -1,0 +1,19 @@
+# Exclude the Dockerfile and .dockerignore itself
+Dockerfile
+.dockerignore
+
+# Exclude Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Exclude the vendor folder if you're not using vendored dependencies
+vendor/
+
+# Exclude Git and other project files
+.git
+.gitignore
+.idea
+.vscode

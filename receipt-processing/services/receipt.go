@@ -9,7 +9,7 @@ import (
 )
 
 // maintaining in memory map to keep track of receipts and points
-var receipts = map[string]int{}
+var receipts = make(map[string]int)
 
 func ProcessReceipt(receipt models.Receipt) string {
 	points := calculatePoints(receipt)
@@ -25,7 +25,7 @@ func GetPoints(id string) (int, bool) {
 
 func calculatePoints(receipt models.Receipt) int {
 	points := 0
-	points += getAlphaNumericPoints(receipt.Retailer)
+	points += len(getAlphanumericChars(receipt.Retailer))
 
 	// +50 points if total is round dollar
 	if receipt.Total == float64(int(receipt.Total)){
@@ -39,7 +39,6 @@ func calculatePoints(receipt models.Receipt) int {
 
 	// +5 for every 2 items on the recipt
 	points += 5 * (len(receipt.Items) / 2)
-	//fmt.Println("Points after 5 points for every 2 items", points)
 
 	// For every item, if desc %3 == 0: +ceil(itemPrice*0.2)  
 	for _, item := range receipt.Items {
@@ -61,12 +60,6 @@ func calculatePoints(receipt models.Receipt) int {
 		points += 10
 	}
 	
-	return points
-}
-
-func getAlphaNumericPoints(retailerName string) int{
-	points := 0
-	points = len(getAlphanumericChars(retailerName))
 	return points
 }
 
