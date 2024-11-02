@@ -24,13 +24,20 @@ Go Validator: For validation of request data
     git clone https://github.com/chinmay13/receipt-processor.git
     cd receipt-processor\receipt-processing
 ```
+Note: This project was developed on Windows, so paths may use \ by default. For Linux/macOS users, replace backslashes \ with forward slashes / in the command if needed.
+
 2. Install dependencies
 
 ```
     go mod tidy
 ```
 
-3. Run the application
+3. Test the application
+```
+    go test .\test\...
+```  
+
+4. Run the application
 
 ```
     go run main.go
